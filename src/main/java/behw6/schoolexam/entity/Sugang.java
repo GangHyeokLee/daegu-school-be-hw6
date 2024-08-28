@@ -6,8 +6,8 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
-@Entity
 @Data
+@Entity
 public class Sugang {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,8 +20,8 @@ public class Sugang {
     private String code;
     private String etc;
 
+    private LocalDateTime date;
+
     @ManyToOne
     private Student student;
-
-    private LocalDateTime date;
 }

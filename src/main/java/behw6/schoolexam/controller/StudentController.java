@@ -31,7 +31,6 @@ public class StudentController {
 
     @GetMapping("readdetail/{id}")
     public String detail(@PathVariable("id") int id, Model model) {
-        System.out.println("studentService.readdetail(id) = " + studentService.readdetail(id));
         model.addAttribute("student", studentService.readdetail(id));
         return "readdetail";
     }

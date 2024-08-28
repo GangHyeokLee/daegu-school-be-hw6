@@ -7,8 +7,8 @@ import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
 @Data
+@Entity
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +23,8 @@ public class Student {
     @NotEmpty(message = "전화번호는 필수항목입니다.")
     private String phone;
 
-    @OneToMany
-    private List<Sugang> sugangs;
-
     private LocalDateTime date;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.REMOVE)
+    private List<Sugang> sugangs;
 }
