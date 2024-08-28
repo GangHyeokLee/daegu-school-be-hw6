@@ -15,9 +15,12 @@ public class Student {
     private int id;
 
     @NotEmpty(message = "이름은 필수항목입니다.")
-    private String username;
-    private String password;
+    private String name;
+    @NotEmpty(message = "전공은 필수항목입니다.")
+    private String major;
+
     private String addr;
+    @NotEmpty(message = "전화번호는 필수항목입니다.")
     private String phone;
 
     @OneToMany

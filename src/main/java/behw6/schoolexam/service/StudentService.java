@@ -2,12 +2,7 @@ package behw6.schoolexam.service;
 
 import behw6.schoolexam.entity.Student;
 import behw6.schoolexam.repository.StudentRepository;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,16 +14,13 @@ import java.util.Optional;
 public class StudentService {
 
     private final StudentRepository studentRepository;
-    private final PasswordEncoder passwordEncoder;
 
-    public StudentService(StudentRepository studentRepository, PasswordEncoder passwordEncoder) {
+    public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     // 회원가입
     public void create(Student student) {
-        student.setPassword(passwordEncoder.encode(student.getPassword()));
         student.setDate(LocalDateTime.now());
         studentRepository.save(student);
     }

@@ -17,7 +17,6 @@ public class Sugang {
     @NotEmpty(message = "강의 제목은 필수 항목입니다.")
     private String subject;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String code;
     private String etc;
 

@@ -1,0 +1,28 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content">
+  <div class="container my-3">
+    <table class="table">
+      <thead class="table-dark">
+      <tr>
+        <th>이름</th>
+        <th>전공</th>
+        <th>주소</th>
+        <th>전화번호</th>
+        <th>가입날짜</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="student, loop : ${students}">
+        <td><a th:href="@{|/readdetail/${student.getId()}|}"
+               th:text="${student.getName()}"></a></td>
+        <td th:text="${student.getMajor()}"></td>
+        <td th:text="${student.getAddr()}"></td>
+        <td th:text="${student.getPhone()}"></td>
+        <td th:text="${student.getDate()}"></td>
+      </tr>
+      </tbody>
+    </table>
+    <a th:href="@{/create}" class="btn btn-primary">학생 등록하기</a>
+  </div>
+</div>
+</html>
