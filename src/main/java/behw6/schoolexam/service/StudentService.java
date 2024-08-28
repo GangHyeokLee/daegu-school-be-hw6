@@ -2,9 +2,7 @@ package behw6.schoolexam.service;
 
 import behw6.schoolexam.entity.Student;
 import behw6.schoolexam.repository.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class StudentService implements UserDetailsService {
+public class StudentService {
 
     private final StudentRepository studentRepository;
     private final PasswordEncoder passwordEncoder;
@@ -35,16 +33,13 @@ public class StudentService implements UserDetailsService {
         studentRepository.save(student);
     }
 
-    // 로그인
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Student> user = this.studentRepository.findByUsername(username);
-        if (user.isEmpty()) {
-            throw new UsernameNotFoundException("사용자를 찾을수 없습니다.");
-        }
-        Student student = user.get();
-        List<GrantedAuthority> authorities = new ArrayList<>();
-
-        return new User(student.getUsername(), student.getPassword(), authorities);
+    public List<Student> readlist(){
+        return studentRepository.findAll();
     }
+
+    public Student readdetail(int id){
+        Optional<Student> ob = studentRepository.findById(id);
+        return ob.get();
+    }
+
 }
